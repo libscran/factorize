@@ -75,7 +75,7 @@ std::vector<std::vector<Input_> > combine_to_factor(const std::size_t n, const s
             }
             return false;
         };
-        std::map<Combination, Code_, decltype(I(cmp))> mapping(std::move(cmp));
+        std::map<Combination, Code_, I<decltype(cmp)> > mapping(std::move(cmp));
 
         const auto eq = [&](const Combination& left, const Combination& right) -> bool {
             for (auto curf : inputs) {
@@ -86,7 +86,7 @@ std::vector<std::vector<Input_> > combine_to_factor(const std::size_t n, const s
             return true;
         };
 
-        for (decltype(I(n)) i = 0; i < n; ++i) {
+        for (I<decltype(n)> i = 0; i < n; ++i) {
             Combination current(i);
             const auto mIt = mapping.find(current);
             if (mIt == mapping.end() || !eq(mIt->first, current)) {
@@ -107,16 +107,16 @@ std::vector<std::vector<Input_> > combine_to_factor(const std::size_t n, const s
         ofac.reserve(nuniq);
     }
     auto remapping = sanisizer::create<std::vector<Code_> >(nuniq);
-    for (decltype(I(nuniq)) u = 0; u < nuniq; ++u) {
+    for (I<decltype(nuniq)> u = 0; u < nuniq; ++u) {
         const auto ix = unique[u].first.index;
-        for (decltype(I(ninputs)) f = 0; f < ninputs; ++f) {
+        for (I<decltype(ninputs)> f = 0; f < ninputs; ++f) {
             output[f].push_back(inputs[f][ix]);
         }
         remapping[unique[u].second] = u;
     }
 
     // Mapping each cell to its sorted combination.
-    for (decltype(I(n)) i = 0; i < n; ++i) {
+    for (I<decltype(n)> i = 0; i < n; ++i) {
         codes[i] = remapping[codes[i]];
     }
 
@@ -165,11 +165,11 @@ std::vector<std::vector<Input_> > combine_to_factor_unused(const std::size_t n, 
     // We iterate from back to front, where the first factor is the slowest changing.
     std::copy_n(inputs[ninputs - 1].first, n, codes); 
     Code_ ncombos = inputs[ninputs - 1].second;
-    for (decltype(I(ninputs)) f = ninputs - 1; f > 0; --f) {
+    for (I<decltype(ninputs)> f = ninputs - 1; f > 0; --f) {
         const auto& finfo = inputs[f - 1];
         const auto next_ncombos = sanisizer::product<Code_>(ncombos, finfo.second);
         const auto ff = finfo.first;
-        for (decltype(I(n)) i = 0; i < n; ++i) {
+        for (I<decltype(n)> i = 0; i < n; ++i) {
             // Product is safe as it is obviously less than 'next_combos' for 'ff[i] < finfo.second'.
             // Addition is also safe as it will be less than 'next_combos', though this is less obvious.
             codes[i] += sanisizer::product_unsafe<Code_>(ncombos, ff[i]);
@@ -177,10 +177,10 @@ std::vector<std::vector<Input_> > combine_to_factor_unused(const std::size_t n, 
         ncombos = next_ncombos;
     }
 
-    sanisizer::cast<decltype(I(output[0].size()))>(ncombos); // check that we can actually make the output vectors.
+    sanisizer::cast<I<decltype(output[0].size())> >(ncombos); // check that we can actually make the output vectors.
     Code_ outer_repeats = ncombos;
     Code_ inner_repeats = 1;
-    for (decltype(I(ninputs)) f = ninputs; f > 0; --f) {
+    for (I<decltype(ninputs)> f = ninputs; f > 0; --f) {
         auto& out = output[f - 1];
         out.reserve(ncombos);
 

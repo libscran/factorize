@@ -39,7 +39,7 @@ template<typename Input_, typename Code_>
 std::vector<Input_> create_factor(const std::size_t n, const Input_* const input, Code_* const codes) {
     auto unique = [&]{ // scoping this in an IIFE to release map memory sooner.
         std::unordered_map<Input_, Code_> mapping;
-        for (decltype(I(n)) i = 0; i < n; ++i) {
+        for (I<decltype(n)> i = 0; i < n; ++i) {
             const auto current = input[i];
             const auto mIt = mapping.find(current);
             if (mIt != mapping.end()) {
@@ -58,13 +58,13 @@ std::vector<Input_> create_factor(const std::size_t n, const Input_* const input
     const auto nuniq = unique.size();
     auto remapping = sanisizer::create<std::vector<Code_> >(nuniq);
     auto output = sanisizer::create<std::vector<Input_> >(nuniq);
-    for (decltype(I(nuniq)) u = 0; u < nuniq; ++u) {
+    for (I<decltype(nuniq)> u = 0; u < nuniq; ++u) {
         remapping[unique[u].second] = u;
         output[u] = unique[u].first;
     }
 
     // Mapping each cell to its sorted factor.
-    for (decltype(I(n)) i = 0; i < n; ++i) {
+    for (I<decltype(n)> i = 0; i < n; ++i) {
         codes[i] = remapping[codes[i]];
     }
 
