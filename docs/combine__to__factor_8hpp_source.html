@@ -154,7 +154,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            }</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        };</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        std::map&lt;Combination, Code_, <span class="keyword">decltype</span>(I(cmp))&gt; mapping(std::move(cmp));</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        std::map&lt;Combination, Code_, I&lt;<span class="keyword">decltype</span>(cmp)&gt; &gt; mapping(std::move(cmp));</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keyword">const</span> <span class="keyword">auto</span> eq = [&amp;](<span class="keyword">const</span> Combination&amp; left, <span class="keyword">const</span> Combination&amp; right) -&gt; <span class="keywordtype">bool</span> {</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> curf : inputs) {</div>
@@ -165,7 +165,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        };</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(n)&gt; i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            Combination current(i);</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keyword">const</span> <span class="keyword">auto</span> mIt = mapping.find(current);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keywordflow">if</span> (mIt == mapping.end() || !eq(mIt-&gt;first, current)) {</div>
@@ -186,16 +186,16 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        ofac.reserve(nuniq);</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">auto</span> remapping = sanisizer::create&lt;std::vector&lt;Code_&gt; &gt;(nuniq);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(nuniq)) u = 0; u &lt; nuniq; ++u) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(nuniq)&gt; u = 0; u &lt; nuniq; ++u) {</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keyword">const</span> <span class="keyword">auto</span> ix = unique[u].first.index;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(ninputs)) f = 0; f &lt; ninputs; ++f) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(ninputs)&gt; f = 0; f &lt; ninputs; ++f) {</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            output[f].push_back(inputs[f][ix]);</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        }</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        remapping[unique[u].second] = u;</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// Mapping each cell to its sorted combination.</span></div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(n)&gt; i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        codes[i] = remapping[codes[i]];</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
@@ -224,11 +224,11 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">// We iterate from back to front, where the first factor is the slowest changing.</span></div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    std::copy_n(inputs[ninputs - 1].first, n, codes); </div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    Code_ ncombos = inputs[ninputs - 1].second;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(ninputs)) f = ninputs - 1; f &gt; 0; --f) {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(ninputs)&gt; f = ninputs - 1; f &gt; 0; --f) {</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; finfo = inputs[f - 1];</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <span class="keyword">const</span> <span class="keyword">auto</span> next_ncombos = sanisizer::product&lt;Code_&gt;(ncombos, finfo.second);</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keyword">const</span> <span class="keyword">auto</span> ff = finfo.first;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(n)&gt; i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            <span class="comment">// Product is safe as it is obviously less than &#39;next_combos&#39; for &#39;ff[i] &lt; finfo.second&#39;.</span></div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            <span class="comment">// Addition is also safe as it will be less than &#39;next_combos&#39;, though this is less obvious.</span></div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            codes[i] += sanisizer::product_unsafe&lt;Code_&gt;(ncombos, ff[i]);</div>
@@ -236,10 +236,10 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        ncombos = next_ncombos;</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    sanisizer::cast&lt;<span class="keyword">decltype</span>(I(output[0].size()))&gt;(ncombos); <span class="comment">// check that we can actually make the output vectors.</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    sanisizer::cast&lt;I&lt;<span class="keyword">decltype</span>(output[0].size())&gt; &gt;(ncombos); <span class="comment">// check that we can actually make the output vectors.</span></div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    Code_ outer_repeats = ncombos;</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    Code_ inner_repeats = 1;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(ninputs)) f = ninputs; f &gt; 0; --f) {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(ninputs)&gt; f = ninputs; f &gt; 0; --f) {</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keyword">auto</span>&amp; out = output[f - 1];</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        out.reserve(ncombos);</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
