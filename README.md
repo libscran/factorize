@@ -1,8 +1,8 @@
 # Create factors from categorical variables
 
-![Unit tests](https://github.com/LTLA/factorize/actions/workflows/run-tests.yaml/badge.svg)
-![Documentation](https://github.com/LTLA/factorize/actions/workflows/doxygenate.yaml/badge.svg)
-[![Codecov](https://codecov.io/gh/LTLA/factorize/graph/badge.svg?token=JWV0I4WJX2)](https://codecov.io/gh/LTLA/factorize)
+![Unit tests](https://github.com/libscran/factorize/actions/workflows/run-tests.yaml/badge.svg)
+![Documentation](https://github.com/libscran/factorize/actions/workflows/doxygenate.yaml/badge.svg)
+[![Codecov](https://codecov.io/gh/libscran/factorize/graph/badge.svg?token=JWV0I4WJX2)](https://codecov.io/gh/libscran/factorize)
 
 ## Overview
 
@@ -43,7 +43,7 @@ grouping1[0] == combined_levels[0][combined_codes[0]]; // true
 grouping2[0] == combined_levels[1][combined_codes[0]]; // true
 ```
 
-Check out the [reference documentation](https://ltla.github.io/factorize) for more details.
+Check out the [reference documentation](https://libscran.github.io/factorize) for more details.
 
 ## Building projects
 
@@ -56,7 +56,7 @@ include(FetchContent)
 
 FetchContent_Declare(
   factorize
-  GIT_REPOSITORY https://github.com/LTLA/factorize
+  GIT_REPOSITORY https://github.com/libscran/factorize
   GIT_TAG master # or any version of interest
 )
 
