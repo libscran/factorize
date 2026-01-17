@@ -97,7 +97,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__2github_2workspace_2README"></a></p>
-<p><img src="https://github.com/LTLA/factorize/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/LTLA/factorize/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/> <a href="https://codecov.io/gh/LTLA/factorize"><img src="https://codecov.io/gh/LTLA/factorize/graph/badge.svg?token=JWV0I4WJX2" alt="Codecov" style="pointer-events: none;" class="inline"/></a></p>
+<p><img src="https://github.com/libscran/factorize/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/libscran/factorize/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/> <a href="https://codecov.io/gh/libscran/factorize"><img src="https://codecov.io/gh/libscran/factorize/graph/badge.svg?token=JWV0I4WJX2" alt="Codecov" style="pointer-events: none;" class="inline"/></a></p>
 <h1>Overview</h1>
 <p>This repository contains functions to create <a href="https://r4ds.had.co.nz/factors.html">R-style factors</a> from categorical variables. Each factor is represented by (i) an array of integer codes in the interval $[0, N)$ and (ii) an array of length $N$ containing sorted and unique levels. For any given observation, its value in the categorical variable can be retrieved by indexing the array of levels by its code. Factors are useful as they map arbitrary variables onto integer codes that can be easily processed by other functions.</p>
 <h1>Quick start</h1>
@@ -126,7 +126,7 @@ $(function(){ initResizable(false); });
 <div class="line">grouping1[0] == combined_levels[0][combined_codes[0]]; <span class="comment">// true</span></div>
 <div class="line">grouping2[0] == combined_levels[1][combined_codes[0]]; <span class="comment">// true</span></div>
 <div class="ttc" id="anamespacefactorize_html_a18cfb52c8107a752fc47fccc09d278b0"><div class="ttname"><a href="namespacefactorize.html#a18cfb52c8107a752fc47fccc09d278b0">factorize::combine_to_factor</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; Input_ &gt; &gt; combine_to_factor(const std::size_t n, const std::vector&lt; const Input_ * &gt; &amp;inputs, Code_ *const codes)</div><div class="ttdef"><b>Definition</b> combine_to_factor.hpp:43</div></div>
-</div><!-- fragment --><p>Check out the <a href="https://ltla.github.io/factorize">reference documentation</a> for more details.</p>
+</div><!-- fragment --><p>Check out the <a href="https://libscran.github.io/factorize">reference documentation</a> for more details.</p>
 <h1>Building projects</h1>
 <h2>CMake with <code>FetchContent</code></h2>
 <p>If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
@@ -134,7 +134,7 @@ $(function(){ initResizable(false); });
 <div class="line"> </div>
 <div class="line">FetchContent_Declare(</div>
 <div class="line">  factorize</div>
-<div class="line">  GIT_REPOSITORY https://github.com/LTLA/factorize</div>
+<div class="line">  GIT_REPOSITORY https://github.com/libscran/factorize</div>
 <div class="line">  GIT_TAG master # or any version of interest</div>
 <div class="line">)</div>
 <div class="line"> </div>
